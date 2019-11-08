@@ -2,7 +2,9 @@
 try {
    node {      
       stage('init'){  
-         sh "docker ps -a"     
+         sh "docker ps -a"
+         sh "docker rm az-demo:1.0"
+         sh "docker ps -a"
          sh "printenv"
          cleanWs()
       }
