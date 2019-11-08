@@ -2,7 +2,7 @@
 try {
    node {      
       stage('init'){       
-           
+         sh "printenv"
       }
       stage('checkout'){              
          sh "mkdir source"
@@ -13,6 +13,7 @@ try {
                   url: "https://github.com/opando/aks-rbac-example.git"
               )
           }
+          sh "pwd && ls -lta"
       }
       stage('Build Container') {      
          //dockerBuild = ""
@@ -27,7 +28,13 @@ try {
 
             //sh "${dockerBuild}"
          }
-   }
+      }
+      stage("Terraform init"){
+         
+         //sh "docker run -v <folder host>:<folder del container> --name <nombre de imagen> <imagen de la copia> terraform init"
+         sh "docker run -v ${WORKSPACE}/source/aks-rbac-example:/iac --name az-runarq az-demo:1.0 terraform init"
+         
+      }
    
 } 
 catch(e) {
