@@ -5,7 +5,10 @@ try {
          sh "printenv"
          cleanWs()
       }
-      stage('checkout'){              
+      stage('checkout'){
+
+         checkout scm
+
          sh "mkdir source"
           dir("source"){
               git(
@@ -25,8 +28,9 @@ try {
             clientSe = spcredential[1]
             tennatId = spcredential[2]
             subscrId = spcredential[3]
+            sh "cp lab2/docker/Dockerfile ."
             sh "docker build -t az-demo:1.0 --build-arg CLIENT_ID=${clientId} --build-arg CLIENT_SECRET=${clientSe} --build-arg TENANT_ID=${tennatId} --build-arg SUSCRIPTION_ID=${subscrId} ."
-
+            sh "docker images"
             //sh "${dockerBuild}"
          }
       }
