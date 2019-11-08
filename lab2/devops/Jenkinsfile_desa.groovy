@@ -13,7 +13,7 @@ try {
                   url: "https://github.com/opando/aks-rbac-example.git"
               )
           }
-          sh "pwd && ls -lta"
+          sh "pwd && ls -lart"
       }
       stage('Build Container') {      
          //dockerBuild = ""
@@ -24,7 +24,7 @@ try {
             clientSe = spcredential[1]
             tennatId = spcredential[2]
             subscrId = spcredential[3]
-            sh "docker build -t az-demo:1.0 --build-arg CLIENT_ID=${clientId} --build-arg CLIENT_SECRET=${clientSe} --build-arg TENANT_ID=${tennatId} --build-arg SUSCRIPTION_ID=${subscrId}"
+            sh "docker build -t az-demo:1.0 --build-arg CLIENT_ID=${clientId} --build-arg CLIENT_SECRET=${clientSe} --build-arg TENANT_ID=${tennatId} --build-arg SUSCRIPTION_ID=${subscrId} ."
 
             //sh "${dockerBuild}"
          }
@@ -35,7 +35,7 @@ try {
          sh "docker run -v ${WORKSPACE}/source/aks-rbac-example:/iac --name az-runarq az-demo:1.0 terraform init"
          
       }
-   
+   }
 } 
 catch(e) {
    node{   
