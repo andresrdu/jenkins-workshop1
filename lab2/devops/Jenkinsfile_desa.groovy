@@ -9,7 +9,7 @@ try {
           dir("source"){
               git(
                   branch : "master",
-                  credentialsId: "opando-github",
+                  credentialsId: "andresrdu-github",
                   url: "https://github.com/opando/aks-rbac-example.git"
               )
           }
