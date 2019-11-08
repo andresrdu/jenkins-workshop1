@@ -21,6 +21,7 @@ try {
               )
           }
           sh "pwd && ls -lart"
+          
       }
       stage('Build Container') {      
          //dockerBuild = ""
@@ -33,6 +34,7 @@ try {
             subscrId = spcredential[3]
             sh "cp lab2/docker/Dockerfile ."
             sh "ls -lat"
+            sh "find . -maxdepth 2 -mindepth 2"
             sh "docker build -t az-demo:1.0 --build-arg CLIENT_ID=${clientId} --build-arg CLIENT_SECRET=${clientSe} --build-arg TENANT_ID=${tennatId} --build-arg SUSCRIPTION_ID=${subscrId} ."
             sh "docker images"
             //sh "${dockerBuild}"
