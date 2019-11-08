@@ -3,6 +3,7 @@ try {
    node {      
       stage('init'){       
          sh "printenv"
+         cleanWs()
       }
       stage('checkout'){              
          sh "mkdir source"
