@@ -43,8 +43,8 @@ try {
       stage("Terraform init"){
          
          //sh "docker run -v <folder host>:<folder del container> --name <nombre de imagen> <imagen de la copia> terraform init"
-         sh "docker run --rm -v ${WORKSPACE}/source/aks-rbac-example:/iac --name az-runarq az-demo:1.0 ls -lart"
-         sh "docker run --rm -v ${WORKSPACE}/source/aks-rbac-example:/iac --name az-runarq az-demo:1.0 terraform init"
+         sh "docker run --rm -v ${WORKSPACE}/source:/iac --name az-runarq az-demo:1.0 ls -lart"
+         sh "docker run --rm -v ${WORKSPACE}/source:/iac --name az-runarq az-demo:1.0 terraform init"
          
       }
    }
