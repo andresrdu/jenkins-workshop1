@@ -43,8 +43,19 @@ try {
       stage("Terraform init"){
          
          //sh "docker run -v <folder host>:<folder del container> --name <nombre de imagen> <imagen de la copia> terraform init"
-         sh "docker run --rm -v ${WORKSPACE}/source:/iac --name az-runarq az-demo:1.0 ls -lart"
-         sh "docker run --rm -v ${WORKSPACE}/source:/iac --name az-runarq az-demo:1.0 terraform init"
+         //sh "docker run --rm -v ${WORKSPACE}/source:/iac --name az-runarq az-demo:1.0 ls -lat"
+         //sh "docker run --rm -v ${WORKSPACE}/source:/iac --name az-runarq az-demo:1.0 terraform init -no-color"
+         sh "docker run --rm --name az-runarq az-demo:1.0 ls -lat"
+         sh "docker run --rm --name az-runarq az-demo:1.0 terraform init -no-color"
+      }
+      stage("Terraform plan"){
+         
+         //sh "docker run --rm -v ${WORKSPACE}/source:/iac --name az-runarq az-demo:1.0 terraform plan -no-color"
+         
+      }
+      stage("Terraform apply"){
+         
+         //sh "docker run --rm -v ${WORKSPACE}/source:/iac --name az-runarq az-demo:1.0 terraform apply -auto-approve -no-color"
          
       }
    }
